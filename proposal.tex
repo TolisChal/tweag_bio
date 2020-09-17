@@ -1,0 +1,162 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsfonts,amsmath,amsthm}
+\usepackage{graphicx}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{lipsum}
+\usepackage[section]{placeins}
+% \usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{capt-of}% or use the larger `caption` package
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\usepackage{bm}
+\usepackage{pdfpages}
+\usepackage{mdframed}
+\usepackage{makecell}
+\usepackage{hyperref}
+\usepackage{todonotes}
+\usepackage{xcolor}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prp}[thm]{Proposition}
+\newtheorem{rem}[thm]{Remarks}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prt}[thm]{Property}
+\newtheorem{algo}{Algorithm}
+
+%\def\Dd{$\Delta^d$}
+\def\vol{\mbox{vol}}
+\def\NN{{\mathbb N}}
+\def\RR{{\mathbb R}}
+\def \d{{\mathrm d}}
+\def \e{{\mathrm e}}
+\def \c++{{\tt C++}}
+\def\volesti{{\tt volesti}}
+\def\cran{{\tt CRAN}}
+\def\R{{\tt R}}
+
+\usepackage{geometry}
+\geometry{margin=0.7in}
+
+\usepackage{biblatex}
+\addbibresource{biblio.bib}
+
+\begin{document}
+\begin{center}
+    \Large{High dimensional uniform sampling and metabolic network analysis}
+\end{center}
+%\title{High dimensional uniform sampling and metabolic constrained models}
+%\author[1]{Apostolos Chalkis, PhD student in Computer Science}%, \\
+%National \& Kapodistrian University of Athens, Greece}
+
+
+%\maketitle
+
+%\todo[inline]{Avoid passive voice!!! Everywhere. Rewrite if necessary. 
+
+%Avoid "very something". Find the synonym in thesaurus}
+
+%\todo[inline]{Say why the internship will be important for tweag and to the world in general. 
+%You will provide them  with something that nobody else has it, but wish to have. Thus there is a demand. 
+
+%For you and volesti, it is rather obvious that it is a nice opportunity.
+
+%I might have to see the call for this.}
+
+\section{Introduction}
+%\textcolor{blue}{ \href{http://www.latex-tutorial.com}{LaTeX-Tutorial}}s
+Uniform sampling in high dimensions from regions that are defined by linear constraints (i.e.,~convex polytopes), using geometric random walks, is of special interest in numerous scientific fields and applications (e.g.,\ \textcolor{blue}{\href{https://arxiv.org/pdf/2001.04566v1.pdf}{multivariate integration}}, \textcolor{blue}{\href{https://drops.dagstuhl.de/opus/volltexte/2018/8732/}{FinTech}} and  \textcolor{blue}{\href{https://dl.acm.org/doi/10.1145/1008731.1008733}{optimization}}). %The package \volesti\ 
+%\todo[inline]{I do not see the purpose of mentioning volesti here} is a \c++\ software with an R interface in \cran\ which provides $4$ geometric random walks for uniform sampling and volume computation. It currently scales in a few hundreds dimensions.
+All the open source implementations of random walks scale up to a few hundreds dimensions. The quest to scale from a few hundreds to a few thousands dimensions is
+considered as an unquestionably far-reaching goal for many years in computational geometry and statistics. 
+Moreover, deciding 
+if a sampling algorithm, or equivalently a Markov chain, converges to a target distribution
+has theoretical guarantees in high dimensions that are extremely pessimistic for any practical use; hence we need experimental studies to deduce  guarantees.
+
+%My project marks the path towards these challenges. 
+%\todo[inline]{The next sentence does not make sense. What is the subject?}
+%Hence, on the one hand consists of efficient \c++\ implementations with interfaces in high level programming languages as \R\ and on the other hand performs extended and complex experiments to study the convergence of all the known random walks for uniform sampling for various cases.
+
+To address these challenges, during this internship, I will enhance the {\tt C++} open source package \volesti\ with new random walks, diagnostic tools to check the convergence of a random walk, prepossessing routines and high quality interfaces and visualization tools for sampling-based metabolic flux analysis (SMFA) in biology. 
+%\todo[inline]{Say here in 2 lines what is the internship about}
+Table~\ref{tab:impmeth} presents the implementations of this project. After $12$ weeks I will have extended \volesti's functionality with the implementations of all the known random walks for uniform sampling and I will improve the existing one. The $3$ diagnostic tools combined with the new rounding methods will allow us to experimentally test and compare the speed of convergence (mixing time) of all the known random walks and derive practical bounds for the number of steps required to converge for each one of them. I will employ the previous practical study to highlight the new implementations as a better and supplementary computational tool to existing ones (e.g.,\ {\tt opencobra}) for SMFA. Last but not least, I plan the practical study on mixing time to lead to a paper submission to an international conference on statistics.
+
+%\todo[inline]{What are you going to do for tweag?}
+
+%The first goal of this project is to extend \volesti's functionality for uniform sampling by adding all the known random walks that are not currently implemented in \volesti\ and by improving existing ones. The second goal is to implement $3$ diagnostic tools to check convergence of random walks, sampling from multivariate distributions. Third, I stand out a certain application of Flux Balance Analysis (FBA) in metabolic networks with uniform sampling in computational biology \cite{}(see Section~\ref{sec:motivation}).
+
+ %The aim is the first efficient implementation in the thousands in order to extend the limits of contemporary computational tools in certain applications.
+
+ %The diagnostic tools would allow us to experimentally test and compare the speed of convergence (mixing time) of all the known random walks and derive practical bounds for the number of steps required to converge for each one of them. 
+
+ %The aim is to employ the previous practical study to highlight the new implementations as a better and supplementary computational tool to existing ones. 
+
+%Summarizing, at the end of this project, \volesti\ is going to provide all the possible choices for uniform sampling with upper bounds for mixing time derived by extensive experiments. It will also support with efficient {\tt C++} implementations all the necessary routines for FBA in metabolic networks with uniform sampling.
+
+%\todo[inline]{I do not think that they  will print it. So make the footnotes "clickable" with \href to save space.}
+\section{Background}
+High dimensional uniform sampling from convex polytopes is an active research area in computational geometry and statistics with a wide range of applications.
+%An extended introduction to geometric random walks is presented in this \textcolor{blue}{\href{https://www.cc.gatech.edu/~vempala/papers/survey.pdf}{survey}}, while 
+The best theoretical results for the mixing times are precisely displayed in \textcolor{blue}{\href{https://arxiv.org/abs/1911.05656}{Table~1, p.~3}}. There are two random walks, i.e.,\ Coordinate Hit and Run (CDHR) and Billiard walk, for which there are not theoretical mixing times but they are both implemented in \volesti.
+The package \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation}{\volesti}} is a generic open source {\tt C++} library, with {\tt R} and (limited) {\tt Python} \textcolor{blue}{\href{https://CRAN.R-project.org/package=volesti}{interfaces}}. It provides the \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation/wiki}{fastest implementations}} for high dimensional uniform sampling and volume approximation as well as computational tools for copula estimation for financial modelling. It is the main package of the open source organization \textcolor{blue}{\href{https://geomscale.github.io/}{{\tt GeomScale}}}, which has been accepted as a mentoring organization by the \textcolor{blue}{\href{https://summerofcode.withgoogle.com/organizations/5673184117915648/}{Google Summer of Code 2020}}. Thus \volesti\ is under major development this period. The are also {\tt C++} \textcolor{blue}{\href{https://github.com/rzrsk/vaidya-walk}{implementations}} for Dikin/Vaidya/John walk based on the same {\tt C++} library with \volesti\ for linear algebra operations (i.e.\ {\tt Eigen}). \textcolor{blue}{\href{https://www.ncbi.nlm.nih.gov/pubmed/12000313}{SMFA}} can be used to study any biological system that can be modeled by a metabolic network; a \textcolor{blue}{\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6718391/}{powerful tool}} which has not fully exploited due to costly computations. The open source package \textcolor{blue}{\href{https://opencobra.github.io/}{{\tt opencobra}}} provides two algorithms for uniform sampling, combined with several routines for SMFA. Interestingly, the default random walk in {\tt opencobra} (i.e.\ CDHR) performs $\sim 100$ times slower than the corresponding implementation in \volesti. 
+
+\section{Motivation}\label{sec:motivation}
+This project will significantly update \volesti\ to the first package that contains efficient implementations of all the existing random walks for uniform sampling, scaling up to thousands dimensions. Having knowledge --\textcolor{blue}{\href{https://www.slideshare.net/ApostolosChalkis/14th-athens-colloquium-on-algorithms-and-complexity-acac19}{from my existing research work}}-- of the fact that the actual mixing time of certain random walks is better than that given in theory, I expect this experimental study to lead to innovative results useful to research and business communities which wish to employ such computational tools and perform Monte Carlo simulations. The project will also provide  efficient {\tt C++} implementations for all the necessary routines of SMFA, extending the limits of contemporary computational tools. The latter will be a road-map to test constraint-based metabolic modelling with uniform sampling at the ecosystem level (e.g.\ using the data from \textcolor{blue}{\href{https://www.biorxiv.org/content/10.1101/857391v1}{here}}) for the first time. I also intent to further work on SMFA employing the computational tools of this project and providing a new algorithmic and mathematical framework to study metabolic networks. I strongly believe that this project and its potentials will greatly benefit organizations like {\tt Tweag} which are interested in Bayesian inference, Markov Chain Monte Carlo methods and bioinformatics. I hope it will serve as a building block towards a long lasting cooperation for the development of the best open source randomized algorithms and computational tools based on sampling from multivariate distributions and efficient implementations.
+%I hope that this project will also be a road-map towards efficient open source implementations related to sampling and randomized algorithms  for multivariate sampling for more general families of distributions (e.g.\ log-concave densities) and randomized algorithms for convex optimization. %(for more details and references for all the above see the Appendix).% Moreover, it will be beneficial to educational communities and university students as it would help them to build intuition as well as it can serve as a platform for student projects.
+
+%Thus this project is expected to be beneficial to both (a) educational and (b) research open source communities. For (a) university students studying computational geometry, statistics or convex analysis will have access to an efficient library that will help them build intuition as well as it can serve as a platform for student projects. 
+%About (b) researchers could use the library in their research projects and also extend it according to their needs.
+
+\section{Project Description}
+The main part of the implementation will be given in \c++\ as a natural extension of the current software of \volesti\ and will be easily accessible through the {\tt Rcpp} wrapping. The code will be merged into \volesti\ software and will lead to an updated \cran\ version of the package. The step 3.\ in Table~\ref{tab:impmeth} consists of modifications and addition of the existing {\tt C++} implementations of those $3$ random walks into \volesti. The project will be considered as successful if the implementations of Table~\ref{tab:impmeth} will be merged after 12 weeks of coding and experiments. %The practical study of random walks will also lead to a submission to an international conference of computational statistics.
+
+%\begin{flushleft}
+\begin{table}[h!]
+%\footnotesize
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\hspace{1.6cm} Implementation & Type \\ \hline% & References \\ \hline\hline
+1. PSRF / RL / GEW & Diagnostic tools \\ \hline%& \cite{Hewson15} / \cite{Raftery92} / \cite[p.~8]{Kathryn96} \\ \hline
+2. Improved Billiard walk & random walk \\ \hline%& \cite{Polyak14} \\ \hline
+3. Dikin / Vaidya / John walk & random walks \\ \hline% &  \cite{Vaidyawalk} \\ \hline
+4. Two polytope rounding methods & prepossessing \\ \hline% & \cite{Haraldsdottir17, Cousins15} \\ \hline
+5. \R\ interface for FBA analysis & application \\ \hline% &   \\ \hline
+\end{tabular}
+\caption{\label{tab:impmeth} The proposed implementations during Tweag Fellowship.}
+\end{table}
+%\end{flushleft}
+
+\textbf{Mentors}: \textcolor{blue}{\href{https://vissarion.github.io/}{Vissarion Fisikopoulos}}s sofware Engineer \& Research Scientist at University of Athens and Oracle and %, he has long experience in open source software development.\\
+\textcolor{blue}{\href{https://who.paris.inria.fr/Elias.Tsigaridas/}{Elias Tsigaridas}}, research scientist at INRIA Paris.% and an expert on algebraic algorithms and mathematical software.
+
+\section{Timeline}
+
+\begin{table}[h!]
+%\footnotesize
+\centering
+\begin{tabular}{|c|c|}\hline
+ Week & Description \\ \hline\hline
+ 1st & Implement improved Billiard walk \\ \hline
+ 2nd \& 3rd & Add the implementations of Dikin-John-Vaidya walks \\ \hline
+ 4th \& 5th & Implement three diagnostic tools \\ \hline
+ 6th & Implement low dimensional sampling  \\ \hline
+ 7th \& 8th & Implement two methods for rounding a polytope \\ \hline
+ 9th & \makecell{Implement an \R\ interface for \\ FBA of a given metabolic network} \\ \hline
+ 10th \& 11th &  \makecell{Experimental study on mixing time}\\ \hline
+ 12th & \makecell{Write documentation and tests} \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+\end{document}
+
