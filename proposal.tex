@@ -75,6 +75,8 @@ The analysis of such metabolic networks however, is in fact a challenging comput
 \textcolor{blue}{\href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0235393}{sampling under various distributions from the metabolic network's steady states}} (uniform sampling being of \textcolor{blue}{\href{https://academic.oup.com/bioinformatics/article/33/11/1741/2964731}{special interest}}) are only a few of the constraint-based problems related with the metabolic network analysis. As these are rather challenging problems from the computational point of view, the development of algorithms and software to this end is of high priority.
 
 So far developed software have certain limitations. With respect to uniform sampling for example, random walks scale up to a few hundreds dimensions.  Metabolic networks though, may scale up to dozens sometimes hundreds of thousands dimensions; especially in case of the Human metabolic network as well as in networks derived from microbial communities as those from the human gut microbiome.
+
+Aim of this internship is to contribute to the \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation}{{\tt volesti}}} \texttt{C++} library in terms of providing a complete \texttt{Python} library toolbox for metabolic network analysis in a highly efficient and user-friendly way. In terms of orders of magnitude, I intend to move from the analysis of a metabolic network of a few dozens of reactions (core network of \textcolor{blue}{\href{http://bigg.ucsd.edu/models/e_coli_core}{\textit{E. coli}}}) to dozens of thousands that the \textcolor{blue}{\href{http://bigg.ucsd.edu/models/Recon3D}{human metabolic network}} implies. I strongly believe that all these contributions will lead to a publication to a top bioinformatics journal. 
 %The quest to scale from a few hundreds to a few thousands dimensions is considered as an unquestionably far-reaching goal for many years in computational geometry and statistics.
 
 %From a single cell to the ecosystem level and from a simple biological process to complex phenomena, systems biology has turned the page in modern research, moving from the traditional reductionist research approaches to a new quality. 
@@ -118,20 +120,23 @@ So far developed software have certain limitations. With respect to uniform samp
 
 The \textcolor{blue}{\href{https://opencobra.github.io/}{COnstraints Based Reconstruction and Analysis (\texttt{COBRA}) project}} is commonly for the analysis of metabolic networks. Especially the {\tt MATLAB} toolbox provides several implementations of a comprehensive collection of basic and advanced modelling methods. However, the native {\tt MATLAB} code can make the run-time extremely large especially as we move towards more complete and thus complex networks; i.e. moving from lower dimension networks to higher ones.
 
-The package \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation}{\texttt{VolEsti}}} is a generic open source \texttt{C++} library, with \texttt{R} and (limited) \texttt{Python} \textcolor{blue}{\href{https://CRAN.R-project.org/package=volesti}{interfaces}}. 
-It provides some of the \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation/wiki}{fastest implementations}} for high dimensional uniform sampling and volume approximation already tested on copula estimation for financial modelling. It is the main package of the open source organization \textcolor{blue}{\href{https://geomscale.github.io/}{{\tt GeomScale}}}, which has been accepted as a mentoring organization by the \textcolor{blue}{\href{https://summerofcode.withgoogle.com/organizations/5673184117915648/}{Google Summer of Code 2020}}.
+The package \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation}{\texttt{volesti}}} is a generic open source \texttt{C++} library, with \texttt{R} and (limited) \texttt{Python} \textcolor{blue}{\href{https://CRAN.R-project.org/package=volesti}{interfaces}}. 
+It provides some of the \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation/wiki}{fastest implementations}} for high dimensional Monte Carlo sampling and volume approximation able to scale up to a few thousands of dimensions and already tested on copula estimation for financial modelling. It is the main package of the open source organization \textcolor{blue}{\href{https://geomscale.github.io/}{{\tt GeomScale}}}, which has been accepted as a mentoring organization by the \textcolor{blue}{\href{https://summerofcode.withgoogle.com/organizations/5673184117915648/}{Google Summer of Code 2020}}.
 
-Aim of this internship is to contribute to the \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation}{{\tt VolEsti}}} \texttt{C++ } library in terms of providing a complete \texttt{Python} library toolbox for metabolic network analysis in a highly efficient and user-friendly way. \texttt{VolEstiPy} will include all the current \texttt{VolEsti} functions, but also those that the GeomScale group is developing now. Furthermore, functions specialized for the analysis of polytopes derived from metabolic network, will be developed and included in this Python interface of \texttt{VolEsti}. Finally, the need for supporting sampling and rounding such polytopes of high dimensions will be addressed and extended tests will be performed in high dimensional metabolic networks. In terms of orders of magnitude, I intend to move from the analysis of a polytopes of a few dozens of reactions (core network of \textcolor{blue}{\href{http://bigg.ucsd.edu/models/e_coli_core}{\textit{E. coli}}} to dozens of thousands that the \textcolor{blue}{\href{http://bigg.ucsd.edu/models/Recon3D}{human metabolic network}} implies. 
+The run-time of \texttt{volesti} is \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation/wiki/volesti-vs-cobra-toolbox}{two order of magnitude smaller than \texttt{COBRA}}} for small metabolic networks and can be even smaller for high dimensional networks as it is equipped with more sophisticated algorithms and implementations. However, the software of \texttt{volesti} has not been designed according to the needs of metabolic network analysis. Thus, it lacks of preprocess routines and general (algorithmic and coding) optimizations to be considered as a benchmark package for high dimensional metabolic network analysis.
+
+%Aim of this internship is to contribute to the \textcolor{blue}{\href{https://github.com/GeomScale/volume_approximation}{{\tt volesti}}} \texttt{C++} library in terms of providing a complete \texttt{Python} library toolbox for metabolic network analysis in a highly efficient and user-friendly way.
+%\texttt{volestipy} will include all the current \texttt{volesti} functions, but also those that the GeomScale group is developing now. Furthermore, functions specialized for the analysis of polytopes derived from metabolic network, will be developed and included in this Python interface of \texttt{volesti}. Finally, the need for supporting sampling and rounding such polytopes of high dimensions will be addressed and extended tests will be performed in high dimensional metabolic networks. %In terms of orders of magnitude, I intend to move from the analysis of a polytope of a few dozens of reactions (core network of \textcolor{blue}{\href{http://bigg.ucsd.edu/models/e_coli_core}{\textit{E. coli}}} to dozens of thousands that the \textcolor{blue}{\href{http://bigg.ucsd.edu/models/Recon3D}{human metabolic network}} implies. 
 
 
-%I will enhance the \texttt{Python} interface of the open source package \texttt{VolEsti} with sampling methods, diagnostic tools, prepossessing routines and high quality interfaces and visualization tools for sampling-based metabolic flux analysis (SMFA). In terms of orders of magnitude, I intend to move from the analysis of a polytopes of a few dozens of reactions (core network of \textcolor{blue}{\href{http://bigg.ucsd.edu/models/e_coli_core}{\textit{E. coli}}} to dozens of thousands that the \textcolor{blue}{\href{http://bigg.ucsd.edu/models/Recon3D}{human metabolic network}} implies. 
+%I will enhance the \texttt{Python} interface of the open source package \texttt{volesti} with sampling methods, diagnostic tools, prepossessing routines and high quality interfaces and visualization tools for sampling-based metabolic flux analysis (SMFA). In terms of orders of magnitude, I intend to move from the analysis of a polytopes of a few dozens of reactions (core network of \textcolor{blue}{\href{http://bigg.ucsd.edu/models/e_coli_core}{\textit{E. coli}}} to dozens of thousands that the \textcolor{blue}{\href{http://bigg.ucsd.edu/models/Recon3D}{human metabolic network}} implies. 
 
 
-%In its current version, it provides three geometric random walks for sampling (including CDHR and BiW) and two state-of-the-art methods for volume estimation for convex polytopes. \texttt{VolEsti} supports sampling up to a few hundreds of dimensions. Being a C++ software as well as the sampling algorithms included, make VolEsti a rather fast option for CBMM studies. 
+%In its current version, it provides three geometric random walks for sampling (including CDHR and BiW) and two state-of-the-art methods for volume estimation for convex polytopes. \texttt{volesti} supports sampling up to a few hundreds of dimensions. Being a C++ software as well as the sampling algorithms included, make volesti a rather fast option for CBMM studies. 
 
  %The are also {\tt C++} \textcolor{blue}{\href{https://github.com/rzrsk/vaidya-walk}{implementations}} for Dikin/Vaidya/John walk based on the same {\tt C++} library with \texttt{volesti} for linear algebra operations (i.e.\ {\tt Eigen}).
 
-%\textcolor{blue}{\href{https://www.ncbi.nlm.nih.gov/pubmed/12000313}{SMFA}} can be used to study any biological system that can be modeled by a metabolic network; a \textcolor{blue}{\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6718391/}{powerful tool}} which has not fully exploited due to costly computations. The open source package \textcolor{blue}{\href{https://opencobra.github.io/}{{\tt opencobra}}} provides two algorithms for uniform sampling, combined with several routines for SMFA. Interestingly, the default random walk in {\tt opencobra} (i.e.\ CDHR) performs $\sim 100$ times slower than the corresponding implementation in \texttt{VolEsti}. 
+%\textcolor{blue}{\href{https://www.ncbi.nlm.nih.gov/pubmed/12000313}{SMFA}} can be used to study any biological system that can be modeled by a metabolic network; a \textcolor{blue}{\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6718391/}{powerful tool}} which has not fully exploited due to costly computations. The open source package \textcolor{blue}{\href{https://opencobra.github.io/}{{\tt opencobra}}} provides two algorithms for uniform sampling, combined with several routines for SMFA. Interestingly, the default random walk in {\tt opencobra} (i.e.\ CDHR) performs $\sim 100$ times slower than the corresponding implementation in \texttt{volesti}. 
 
 %metabolic modelling, is among those scientific fields that need such approaches the most to address their modern challenges. Flux Balance Analysis (FBA) is a typical example of a constraint-based metabolic model (CBMM) [2].
 
@@ -145,14 +150,15 @@ Aim of this internship is to contribute to the \textcolor{blue}{\href{https://gi
 %Table 1 shows the implementations of this project. After $12$ weeks I will have extended \volesti's functionality with the implementations of all the known random walks for uniform sampling and I will improve the existing one. 
 
 \section{Motivation}\label{sec:motivation}
-Main outcome of this project will be the implementation of the \texttt{VolEsti} fine algorithms for a series of constraint-based problems, for the needs of the metabolic networks analysis. This will allow for a \textit{one-stop-shop} \texttt{Python} library for the analysis of real data metabolic networks analysis. More specifically, it will allow the implementation of the complete analysis of high dimensional networks, in some cases for the first time to my knowledge, and it will provide a fundamental first step for the analysis of networks of networks, for the case of microbial communities as the ones in human gut, a highly important field for biomedical research.
-
-The biomedical community will have a great benefit from improved implementations of optimization methods, high dimensional sampling, and preprocess methods for the study of \textcolor{blue}{\href{https://www.frontiersin.org/articles/10.3389/fcimb.2020.00052/full}{infectious diseases}}, \textcolor{blue}{\href{https://www.sciencedirect.com/science/article/pii/S155041311730092X}{precision medicine}}, \textcolor{blue}{\href{https://www.sciencedirect.com/science/article/pii/S1359644613002481}{drug discovery}} and more.  
+Main outcome of this project will be a benchmark \texttt{Python} library, namely \texttt{volestipy}, for a series of constraint-based problems, for the needs of the metabolic networks analysis. This will allow for 
+%a \textit{one-stop-shop} \texttt{Python} library for 
+the analysis of high dimensional real data metabolic networks analysis. More specifically, it will allow the implementation of the complete analysis of networks, in some cases for the first time to my knowledge, and it will provide a fundamental first step for the analysis of networks of networks, for the case of microbial communities as the ones in human gut, a highly important field for biomedical research.
+The biomedical community will have a great benefit from powerful implementations of optimization methods, high dimensional Monte Carlo sampling, and preprocess methods for the study of \textcolor{blue}{\href{https://www.frontiersin.org/articles/10.3389/fcimb.2020.00052/full}{infectious diseases}}, \textcolor{blue}{\href{https://www.sciencedirect.com/science/article/pii/S155041311730092X}{precision medicine}}, \textcolor{blue}{\href{https://www.sciencedirect.com/science/article/pii/S1359644613002481}{drug discovery}} and more. 
 
 %Faster and of high quality sampling methods, capable of dealing with high dimensional networks would benefit the most the metabolic modelling at the genome-scale. 
 %Implementations of Coordinate Directions Hit-and-Run (CDHR) and Billiard walk (BiW) can provide fast and high quality sampling, however they are not included in \texttt{cobrapy} (the Python interface of COBRA). 
 
-%This project will significantly update \texttt{VolEsti} to the first package that contains efficient implementations of all the existing random walks for uniform sampling, scaling up to thousands dimensions. 
+%This project will significantly update \texttt{volesti} to the first package that contains efficient implementations of all the existing random walks for uniform sampling, scaling up to thousands dimensions. 
 
 %Having knowledge --\textcolor{blue}{\href{https://www.slideshare.net/ApostolosChalkis/14th-athens-colloquium-on-algorithms-and-complexity-acac19}{from my existing research work}}-- of the fact that the actual mixing time of certain random walks is better than that given in theory, I expect this experimental study to lead to innovative results useful to research and business communities which wish to employ such computational tools and perform Monte Carlo simulations. The project will also provide efficient {\tt C++} implementations for all the necessary routines of SMFA, extending the limits of contemporary computational tools. The latter will be a road-map to test constraint-based metabolic modelling with uniform sampling at the ecosystem level (e.g.\ using the data from \textcolor{blue}{\href{https://www.biorxiv.org/content/10.1101/857391v1}{here}}) for the first time. I also intent to further work on SMFA employing the computational tools of this project and providing a new algorithmic and mathematical framework to study metabolic networks. I strongly believe that this project and its potentials will greatly benefit organizations like {\tt Tweag} which are interested in Bayesian inference, Markov Chain Monte Carlo methods and bioinformatics. I hope it will serve as a building block towards a long lasting cooperation for the development of the best open source randomized algorithms and computational tools based on sampling from multivariate distributions and efficient implementations.
 
@@ -162,16 +168,17 @@ The biomedical community will have a great benefit from improved implementations
 %About (b) researchers could use the library in their research projects and also extend it according to their needs.
 
 \section{Project Description}
-The main part of the implementation will be given in \texttt{C++} but also in \texttt{Python} and \texttt{Cython} as a natural extension of the current version of the \texttt{VolEsti} library and its wrapping in \texttt{Python} correspondingly. 
-The code will be merged into the \texttt{VolEsti} software and will lead to an updated version of the package. %In Table~\ref{tab:impmeth} modifications, additions on the existing code and implementations of the \texttt{VolEstiPy} library proposed are shown.
+\texttt{volestipy} will include all the current \texttt{volesti} functions, but also new implementations of optimization methods needed for FBA and FVA, new Monte Carlo sampling algorithms and new preprocessing and coding optimizations.
+The main part of the implementation will be given in \texttt{C++} but also in \texttt{Python} and \texttt{Cython} as a natural extension of the current version of the \texttt{volesti} library and its wrapping in \texttt{Python} correspondingly. 
+The code will be merged into the \texttt{volesti} software and will lead to an updated version of the package. %In Table~\ref{tab:impmeth} modifications, additions on the existing code and implementations of the \texttt{volestiPy} library proposed are shown.
 
-\begin{figure}[!h]
-  \includegraphics[width=\linewidth]{sampling_pipeline.png}
-  \caption{Steps for sampling a polytope derived from a metabolic network.}
-  \label{fig:Pipeline}
-\end{figure}
+%\begin{figure}[!h]
+%  \includegraphics[width=\linewidth]{sampling_pipeline.png}
+%  \caption{Steps for sampling a polytope derived from a metabolic network.}
+%  \label{fig:Pipeline}
+%\end{figure}
 
-The project will be considered as successful if the implementations of Table~\ref{tab:impmeth} will be merged in the core code of \texttt{VolEsti} after 12 weeks of coding and experiments and if the complete pipeline of Figure 1 has been completed for the latest Human Metabolic Network. %The practical study of random walks will also lead to a submission to an international conference of computational statistics.
+The project will be considered as successful if (a) the implementations of the timeline Table will result to a new \texttt{Python} package, namely \texttt{volestipy}, and (b) \texttt{volestipy} can perform a complete analysis for the latest human metabolic network. %The practical study of random walks will also lead to a submission to an international conference of computational statistics.
 
 %\begin{flushleft}
 %\begin{table}[h!]
@@ -200,13 +207,15 @@ The project will be considered as successful if the implementations of Table~\re
 \centering
 \begin{tabular}{|c|c|}\hline
  Week & Description \\ \hline\hline
- 1st, 2nd \& 3d & Develop FBA and FVA functions for the \texttt{VolEstiPy} library \\ \hline
- 4th \& 5th & \begin{tabular}[c]{@{}c@{}}Build the \texttt{Python} interface including FBA, FVA and the sampling and \\ rounding methods of \texttt{VolEsti}\end{tabular} \\ \hline
- 6th & Develop visualization modules for each of the \texttt{VolEsti} module \\ \hline
- 7th \& 8th & Test algorithms' scalability in real data of metabolic networks 
+ 1st, 2nd & Develop FBA and FVA functions for the \texttt{volestipy} package \\ \hline
+ 3rd & \begin{tabular}[c]{@{}c@{}}Implement preprocess methods and code \\ optimizations on existing implementations\end{tabular}\\ \hline
+ 4th \& 5th & \begin{tabular}[c]{@{}c@{}}Build the \texttt{Python} interface including FBA, FVA, \\ Monte Carlo sampling and preprocess methods\end{tabular} \\ \hline
+ 6th & Develop visualization modules for each of the \texttt{volestipy} modules \\ \hline
+ 7th \& 8th & \begin{tabular}[c]{@{}c@{}}Test algorithms' scalability in real data of metabolic \\ networks and make further code optimizations\end{tabular}
  \\ \hline
-9th, 10th \& 11th & \begin{tabular}[c]{@{}c@{}}Fix, improve and develop the \texttt{VolEstiPy} library \\ according to the issues derived on week $8$\end{tabular}  \\ \hline
- 12th & \makecell{Write documentation and tests} \\ \hline
+ 9th, 10th \& 11th & \begin{tabular}[c]{@{}c@{}} Perform a complete analysis of high dimensional metabolic \\ networks included the latest \textcolor{blue}{\href{http://bigg.ucsd.edu/models/Recon3D}{human metabolic network}} \end{tabular}  \\ \hline
+%9th, 10th \& 11th & \begin{tabular}[c]{@{}c@{}}Fix, improve and develop the \texttt{volestipy} library \\ according to the issues derived on week $8$\end{tabular}  \\ \hline
+ 12th & \makecell{Write the documentation and useful examples} \\ \hline
 \end{tabular}
 \end{table}
 
